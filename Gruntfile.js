@@ -1,19 +1,31 @@
 module.exports = function (grunt) {
-  // 项目配置
+
   grunt.initConfig({
-    pkg: grunt.file.readJSON('package.json'),
-    uglify: {
-      options: {
-        banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */\n'
+    less: {
+      compile: {
+        files: {
+          'css/test.css': 'less/test.less'
+        }
       },
-      build: {
-        src: 'src/<%=pkg.name %>.js',
-        dest: 'dest/<%= pkg.name %>.min.js'
+      yuicompress: {
+        files: {
+          'css/test-min.css': 'css/test.css'
+        },
+        options: {
+          yuicompress: true
+        }
+      }
+    },
+    watch: {
+      scripts: {
+        files: ['less/*.less'],
+        tasks: ['less']
       }
     }
   });
-  // 加载提供"uglify"任务的插件
-  grunt.loadNpmTasks('grunt-contrib-uglify');
-  // 默认任务
-  grunt.registerTask('default', ['uglify']);
-}
+
+  grunt.loadNpmTasks('grunt-contrib-less');
+  grunt.loadNpmTasks('grunt-contrib-watch');
+
+  grunt.registerTask('default', ['less', 'watch']);
+};

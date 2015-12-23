@@ -4,12 +4,16 @@ module.exports = function (grunt) {
     less: {
       compile: {
         files: {
-          'css/test.css': 'less/test.less'
+          //'css/test.css': 'less/test.less',
+          'css/login/global.css': 'less/login/global.css',
+          'css/login/login.css': 'less/login/login.css'
         }
       },
       yuicompress: {
         files: {
-          'css/test-min.css': 'css/test.css'
+          //'css/test-min.css': 'css/test.css'
+            'css/login/global.css': 'less/login/global.css',
+            'css/login/login.css': 'less/login/login.css'
         },
         options: {
           yuicompress: true
